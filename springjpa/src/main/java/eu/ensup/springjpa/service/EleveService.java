@@ -7,43 +7,33 @@ import eu.ensup.springjpa.domaine.Eleve;
 
 public class EleveService {
 
-	private IEleveDao elevedao;
+	private IEleveDao ielevedao;
+
+	public IEleveDao getIelevedao() {
+		return ielevedao;
+	}
+
+	public void setIelevedao(IEleveDao ielevedao) {
+		this.ielevedao = ielevedao;
+	}
 
 	public EleveService(IEleveDao elevedao) {
 		super();
-		this.elevedao = elevedao;
+		this.ielevedao = elevedao;
 	}
 
 	public EleveService() {
 		super();
 	}
 
-	public IEleveDao getElevedao() {
-		return elevedao;
-	}
 
-	public void setElevedao(IEleveDao elevedao) {
-		this.elevedao = elevedao;
+	public List<Eleve> trouverParNom(String Nom){
+		return ielevedao.findByNom(Nom);
 	}
-
-	public List<Eleve> findByNom(String Nom){
-		return elevedao.findByNom(Nom);
+	
+	public void ajouterEleve(Eleve eleve) {
+		ielevedao.save(eleve);
 	}
-//	public void creerEleve(Eleve eleve) {
-//		elevedao.createStudent(new Eleve("TOUCHARD", "DAVID"));
-//	}
-
-//	public Eleve lireEleve(int id) {
-//		return elevedao.getEleveById(id);
-//	}
-//
-//	public void supprimerEleve(Eleve eleve) {
-//		elevedao.delete(eleve);
-//	}
-//
-//	public List<Eleve> getAll() {
-//		return elevedao.getAll();
-//	}
 
 	public void initialisation() {
 		System.out.println("Creation de l'objet service");
@@ -52,5 +42,22 @@ public class EleveService {
 	public void destruction() {
 		System.out.println("Destruction de l'objet service");
 	}
+	
+//	public void creerEleve(Eleve eleve) {
+//	elevedao.createStudent(new Eleve("TOUCHARD", "DAVID"));
+//}
+
+//public Eleve lireEleve(int id) {
+//	return elevedao.getEleveById(id);
+//}
+//
+//public void supprimerEleve(Eleve eleve) {
+//	elevedao.delete(eleve);
+//}
+//
+//public List<Eleve> getAll() {
+//	return elevedao.getAll();
+//}
+
 
 }
